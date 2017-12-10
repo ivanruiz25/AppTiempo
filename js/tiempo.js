@@ -2,34 +2,17 @@
 //clase tiempo para guardar los datos en un objeto
 class Tiempo{
 
-  constructor(id,fecha,estado,min,max)
+  constructor(id,fecha,estado,min,max,humedad,viento,presion)
   {
     this.id=id;
     this.fecha=fecha;
     this.estado=estado;
     this.min=min;
     this.max=max;
+    this.humedad=humedad;
+    this.viento=viento;
+    this.presion=presion;
     
-  }
-  get Id()
-  {
-    return this.id;
-  }
-  get Fecha()
-  {
-    return this.fecha;
-  }
-  get Estado()
-  {
-    return this.estado;
-  }
-  get Min()
-  {
-    return this.min;
-  }
-  get Max()
-  {
-    return this.max;
   }
   toString()
   {
@@ -66,7 +49,6 @@ var getJSON = function(url) {
 
 //array global donde guardaremos los objetos
   var dias=[];
-  //visibility: hidden
 
 // funcion para sacar datos desde el json
   getJSON(urlTiempo).then(function(data) {
@@ -74,24 +56,19 @@ var getJSON = function(url) {
     
     for(let i=0; i< 8; i++)   {
 
-        var date=new Date(data.list[i].dt*1000);
+      var date=new Date(data.list[i].dt*1000);
 
-        // vamos metiendo los datos del json en un array como un objeto tiempo
-        dias.push(new Tiempo(i,date,data.list[i].weather[0]['main'] , data.list[i].main['temp_min'], data.list[i].main['temp_max']));
-        //motramos los datos del objeto guardado en el array con un id que va ser posicion en la que se encuentra el objeto en el array
-        //en onclick guardamos la funcion que se activara cuando pulsemos el enlace 
-        
+    // vamos metiendo los datos del json en un array como un objeto tiempo
+    dias.push(new Tiempo(i,date,data.list[i].weather[0]['main'] , data.list[i].main['temp_min'], data.list[i].main['temp_max'],data.list[i].main['humidity'],data.list[i].wind['speed'],data.list[i].main['pressure']));
+         
     }
    
- 
-  }, function(status) {
+}, function(status) {
   alert('Algo fue mal.');
 });
 
-//comprobar el array en la consola del navegador
-  console.log(dias);
-//funcion para buscar el objeto a mostrar
 
+//funcion para buscar el objeto a mostrar por su id
 function encontrarObjeto(id)
 {
   var objeto="";
@@ -115,41 +92,102 @@ return array[diaSemana];
 
 }
 
+// funcion que va a determinar que imagen poner dependiendo del estado del objeto
+function escogerImagen(objeto)
+{
+  var imagen="";
+
+  if(objeto.estado == "Clear")
+  {
+    imagen="sol.png";
+  }
+  else if(objeto.estado == "Rain")
+  {
+    imagen="lluvia.png";
+  }
+  else if(objeto.estado == "Clouds")
+  {
+    imagen="nublado.png";
+  }
+  else
+  {
+    imagen="nevado.png";
+  }
+
+  return imagen;
+}
+// funcion para mostrar el dia en el que hemos pinchado 
 function mostrarDia(id)
 {
-  document.getElementById("tabla").style.display = 'none';
+ 
+ // cambiamos la clase la tabla donde se encuentran todos los datos de la semana para ocultarla
+  document.getElementById("semana").className="oculta";
+  var dia=document.getElementById("dia");
+  // le asignamos la clase para asignarle estilos
+  dia.className="dia";
+  // variable donde vamos a ir guardando los datos a motrar
+  var contenidoDia;
+  // buscamos el objeto por su id
   var objeto=encontrarObjeto(id);
+  // llamamos a la funcion que va determinar que imagen va tener el objeto
+  var imagen=escogerImagen(objeto);
+  // asignamos un dia de la semana dependiendo de un numero
   var diaSemana=mostrarDiaSemana(objeto.fecha.getDay());
 
-  document.write("<div id=\"dia\" >");
-  document.write("<h1><a href=\"javascript:mostrarOcultar();\" >Tu tiempo</a></h1>");
-  document.write("<h2>"+diaSemana+"</h2>");
-  document.write("<h2>"+objeto.fecha.getDate()+"/"+(objeto.fecha.getMonth()+1));
-  document.write("<h3> max: "+objeto.max+"º</h3>");
-  document.write("<h3> min: "+objeto.min+"º</h3>");
-  document.write("<h4>"+objeto.estado+"</h4>");
-  document.write("</div>");
+  contenidoDia="<table class=\"tablaInicial\">";
+  contenidoDia+="<tr><th><a class=\"encabezado\" href=\"javascript:mostrarOcultar();\" >Tu tiempo</a></th></tr>";
+  contenidoDia+="<tr><th class=\"ciudad\" >Alcobendas</th></tr>";
+  contenidoDia+="</table>";
+  contenidoDia+="<img src=\"img/"+imagen+"\" />";
+  contenidoDia+="<h2>"+diaSemana+" "+objeto.fecha.getDate()+"/"+(objeto.fecha.getMonth()+1)+"</h2>";
+  contenidoDia+="<h4>"+objeto.estado+"</h4>";
+  contenidoDia+="<h3 class=\"max\" >"+objeto.max+"º </h3>";
+  contenidoDia+="<h3>"+objeto.min+"º </h3>";
+  contenidoDia+="<h4> Humedad: "+objeto.humedad+"% </h4>";
+  contenidoDia+="<h4> Viento: "+objeto.viento+" Km/h NW </h4>";
+  contenidoDia+="<h4> Presion: "+objeto.presion+" Hpa </h4>";
+
+  
+ 
+ //mandamos los datos para que se impriman en la etiqueta con el id "dia"
+ dia.innerHTML=contenidoDia;
 }
 
+// funcion para mostrar una tabla con los datos de toda semana
 function mostrarSemana()
 {
+  
+  var tabla=document.getElementById("semana");
+  // asignamos la clase para mostrar la tabla con estilos
+  tabla.className="tablaInicial";
+  //variable donde guardaremos todos los datos
+  var contenido;
 
-  document.write("<table id=\"tabla\">");
-  document.write("<tr><th>Tu tiempo</th></tr>");
-  document.write("<tr><th>Alcobendas</th></tr>");
+    contenido='<tr><th>Tu tiempo</th></tr>';
+    contenido+="<tr><th class=\"ciudad\" >Alcobendas</th></tr>";
 
+  // recorremos el array donde se encuentran nuestros objetos
   for(let i=0;i<dias.length;i++)
   {
-      document.write("<tr>");
-      document.write("<td><a  id=\""+i+"\" href=\"javascript:mostrarDia("+i+");\" >"+dias[i].toString()+"</a></td>");
-      document.write("</tr>");
+      contenido+="<tr>";
+      contenido+="<td><a  id=\""+i+"\" href=\"javascript:mostrarDia("+i+");\" >"+dias[i].toString()+"</a></td>";
+      contenido+="</tr>";
   }
-  document.write("</table>");
-
+  // introducimos los datos en la etiqueta con id semana para imprimirlos
+  tabla.innerHTML=contenido;
 }
+// funcion para ocultar los datos de un dia y volver a mostrar la tabla donde se encuentra la semana 
 function mostrarOcultar()
 {
+  
   var dia=document.getElementById("dia");
-  dia.parentNode.removeChild(dia);
-  document.getElementById("tabla").style.display = 'block';
+  var semana=document.getElementById("semana");
+
+  // ocultamos el div donde se encuentran los datos del dia
+  dia.className="oculta";
+  // dejamos el div vacio 
+  dia.innerHTML="";
+  // volvemos a asignar estilos a la tabla donde se encuentran los datos de la semana para volver a mostrarla
+  semana.className="tablaInicial";
+    
 }

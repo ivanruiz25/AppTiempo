@@ -1,0 +1,92 @@
+body{
+		width: 964px;
+}
+		
+.oculta{
+		
+		display:none;				
+}
+
+.tablaInicial{
+
+		width: 100%;
+		text-align: center;
+		border-color: #1E3FDA;
+		background-color: #1E3FDA;
+		display: ;
+		font-size:1.7em ;
+		font-family: 'Bungee', cursive;
+}
+.encabezado{
+
+	text-decoration: none;
+	color: #F3FA46;
+	font-family: 'Bungee', cursive;
+
+}
+
+td{
+			
+	background-color: #F3FA46;
+	height: 80px;
+	font-family: 'Bungee', cursive;
+}
+th{
+
+	color: #FFFFFF;
+	height: 100px;
+	font-size: 1.9em;
+	font-family: 'Bungee', cursive;
+}
+.dia{
+
+	width: 964px;
+	border:2px solid #1E3FDA;
+	font-family: 'Bungee', cursive;
+}
+.ciudad{
+
+	background-color: #8A9BEA;
+	height: 100px;
+	font-size: 1.9em;
+	font-family: 'Bungee', cursive;
+}
+a{
+    text-decoration: none;
+    color: #232739;
+    font-family: 'Bungee', cursive;
+}
+img{
+
+	float: right;
+	width: 30%;
+	height: 30%;
+	margin: 6%;
+	
+}
+h2{
+
+	margin-left: 3%;
+	font-size: 2em;
+	color: #232739;
+	font-family: 'Bungee', cursive;
+}
+.max{
+
+	margin-left:20%;
+	font-size: 3em;
+	color: #E32929;
+	font-family: 'Bungee', cursive;
+}
+h3{
+	margin-left:20%;
+	font-size: 2.8em;
+	color: #29C4E3;
+	font-family: 'Bungee', cursive;
+}
+h4{
+	margin-left: 3%;
+	font-size:2em;
+	color: #232739;
+	font-family: 'Bungee', cursive;
+}
