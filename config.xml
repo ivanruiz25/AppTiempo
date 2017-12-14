@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+ <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->  
+<widget xmlns   = "http://www.w3.org/ns/widgets"  
+     xmlns:gap = "http://phonegap.com/ns/1.0"  
+     id    = "com.phonegap.MyApp"  
+     version  = "1.0.0"> 
+
+  <name>Forecast</name>  
+   <description>  
+     App realizada para una practica de Desarrollo en entorno cliente.
+     muesta el tiempo durante una semana en Alcobendas.
+   </description>  
+   <author  email="ivanruizde25@gmail.com">  
+     Ivan Ruiz de la Hermosa Santos 
+   </author> 
+   <icon src="img/nevado.png" gap:platform="android" />  
+
+   <feature name="http://api.phonegap.com/1.0/network" />
+
+   <access origin="*" onlyInBrowser="true" />
+
+</widget>

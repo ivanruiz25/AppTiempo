@@ -1,5 +1,5 @@
 body{
-		width: 964px;
+	width: 100vh;
 }
 		
 .oculta{
@@ -40,7 +40,7 @@ th{
 }
 .dia{
 
-	width: 964px;
+	width: 100%;
 	border:2px solid #1E3FDA;
 	font-family: 'Bungee', cursive;
 }

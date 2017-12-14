@@ -54,9 +54,10 @@ var getJSON = function(url) {
   getJSON(urlTiempo).then(function(data) {
 
     
-    for(let i=0; i< 8; i++)   {
+    for(let i=0; i< data.list.length; i++)   {
 
       var date=new Date(data.list[i].dt*1000);
+      console.log(date);
 
     // vamos metiendo los datos del json en un array como un objeto tiempo
     dias.push(new Tiempo(i,date,data.list[i].weather[0]['main'] , data.list[i].main['temp_min'], data.list[i].main['temp_max'],data.list[i].main['humidity'],data.list[i].wind['speed'],data.list[i].main['pressure']));
@@ -132,10 +133,11 @@ function mostrarDia(id)
   // llamamos a la funcion que va determinar que imagen va tener el objeto
   var imagen=escogerImagen(objeto);
   // asignamos un dia de la semana dependiendo de un numero
+  console.log(objeto.fecha.getDay());
   var diaSemana=mostrarDiaSemana(objeto.fecha.getDay());
 
   contenidoDia="<table class=\"tablaInicial\">";
-  contenidoDia+="<tr><th><a class=\"encabezado\" href=\"javascript:mostrarOcultar();\" >Tu tiempo</a></th></tr>";
+  contenidoDia+="<tr><th><a class=\"encabezado\" href=\"javascript:mostrarOcultar();\" >Forecast</a></th></tr>";
   contenidoDia+="<tr><th class=\"ciudad\" >Alcobendas</th></tr>";
   contenidoDia+="</table>";
   contenidoDia+="<img src=\"img/"+imagen+"\" />";
@@ -163,7 +165,7 @@ function mostrarSemana()
   //variable donde guardaremos todos los datos
   var contenido;
 
-    contenido='<tr><th>Tu tiempo</th></tr>';
+    contenido='<tr><th>Forecast</th></tr>';
     contenido+="<tr><th class=\"ciudad\" >Alcobendas</th></tr>";
 
   // recorremos el array donde se encuentran nuestros objetos
