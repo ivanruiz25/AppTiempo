@@ -62,7 +62,7 @@ var getJSON = function(url) {
 
     // vamos metiendo los datos del json en un array como un objeto tiempo
     dias.push(new Tiempo(i,date,data.list[i].weather[0]['main'] , data.list[i].main['temp_min'], data.list[i].main['temp_max'],data.list[i].main['humidity'],data.list[i].wind['speed'],data.list[i].main['pressure']));
-    
+         
     }
    
 }, function(status) {
@@ -90,7 +90,7 @@ function mostrarDiaSemana(diaSemana) {
 
 var array=['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'];
 
-return  (diaSemana >= 0 && diaSemana <= 6) ? array[diaSemana] : "";
+return array[diaSemana];
 
 }
 
@@ -172,7 +172,6 @@ function mostrarSemana()
   // recorremos el array donde se encuentran nuestros objetos
   for(let i=0;i<dias.length;i++)
   {
-    console.log(dias[i]);
       contenido+="<tr>";
       contenido+="<td><a  id=\""+i+"\" href=\"javascript:mostrarDia("+dias[i].id+");\" >"+dias[i].toString()+"</a></td>";
       contenido+="</tr>";
