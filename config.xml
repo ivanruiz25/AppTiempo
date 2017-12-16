@@ -25,7 +25,6 @@
 		</platform>
 		<!--    -->
 		<!-- Permisos de acceso a internet -->
-		<gap:plugin source="npm" name="cordova-plugin-whitelist" />
-		<access origin="*" />
+		<access origin="http://api.openweathermap.org/data/2.5/forecast?id=3130583&lang=es&units=metric&APPID=803632d6d2f0ebf856ad977cbb6614e0" />
 
 		</widget>
