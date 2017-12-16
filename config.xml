@@ -17,8 +17,6 @@
 		<icon src="img/nevado.png" />
 	
 		<!-- plataformas en las que se podra utilizar la app -->
-  		<allow-intent href="*" />
-  		<allow-navigation href="*" />
   		<access origin="*" />
 		<!--    -->
 
