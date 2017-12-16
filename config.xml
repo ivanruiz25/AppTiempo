@@ -15,8 +15,7 @@
 		<author href="" email="ivanruizde25@gmail.com">Ivan Ruiz de la Hermosa Santos</author>
 		<!-- Icono que tendra la app -->
 		<icon src="icon.png" />
-		<!-- Ultima version de phoneGap -->
-		<preference name="phonegap-version" value="cli-6.4.0" />
+	
 		<!-- plataformas en las que se podra utilizar la app -->
 		<platform name="ios">
 		</platform>
@@ -28,5 +27,5 @@
 		<!-- Permisos de acceso a internet -->
 		<feature name="http://api.phonegap.com/1.0/network" />
 		<access origin="*" onlyInBrowser="true" />
-		
+
 		</widget>
