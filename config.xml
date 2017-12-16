@@ -17,12 +17,7 @@
 		<icon src="img/nevado.png" />
 	
 		<!-- plataformas en las que se podra utilizar la app -->
-		<platform name="ios">
-		</platform>
-		<platform name="android">
-		</platform>
-		<platform name="winphone">
-		</platform>
+		<access origin="*" />
 		<!--    -->
 
 		</widget>
