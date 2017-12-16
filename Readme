@@ -6,3 +6,7 @@ APP CON PHONEGAP
 
 la APK se encuentra en el repositorio pero en el movil no consigue cargar el Json. He intentado darle permisos de internet, realizar el xml 
 con una aplicacion y el resultado a sido siempre el mismo
+
+GITHUBPAGES
+
+Bloquea en Json. el contenido debe ser servido a través de HTTPS.
