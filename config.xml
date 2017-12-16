@@ -14,7 +14,7 @@
 		<!-- Autor de la app -->
 		<author href="" email="ivanruizde25@gmail.com">Ivan Ruiz de la Hermosa Santos</author>
 		<!-- Icono que tendra la app -->
-		<icon src="img/icon.png" />
+		<icon src="img/nevado.png" />
 	
 		<!-- plataformas en las que se podra utilizar la app -->
 		<platform name="ios">
