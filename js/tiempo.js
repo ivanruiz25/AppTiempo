@@ -2,7 +2,7 @@
 //clase tiempo para guardar los datos en un objeto
 class Tiempo{
 
-  constructor(id,fecha,estado,min,max,humedad,viento,presion)
+  constructor(id,fecha,estado,min,max,humedad,viento,presion,icono)
   {
     this.id=id;
     this.fecha=fecha;
@@ -12,7 +12,7 @@ class Tiempo{
     this.humedad=humedad;
     this.viento=viento;
     this.presion=presion;
-    
+    this.icono=icono;
   }
   toString()
   {
@@ -50,7 +50,7 @@ var getJSON = function(url) {
 //array global donde guardaremos los objetos
   var dias=[];
 
-// funcion para sacar datos desde el json
+// funcion para sacar datos desde el json en un array de objetos tiempo
   getJSON(urlTiempo).then(function(data) {
 
     
@@ -60,8 +60,8 @@ var getJSON = function(url) {
       console.log(i);
       console.log(date);
 
-    // vamos metiendo los datos del json en un array como un objeto tiempo
-    dias.push(new Tiempo(i,date,data.list[i].weather[0]['main'] , data.list[i].main['temp_min'], data.list[i].main['temp_max'],data.list[i].main['humidity'],data.list[i].wind['speed'],data.list[i].main['pressure']));
+  // vamos metiendo los datos del json en un array como un objeto tiempo
+    dias.push(new Tiempo(i,date,data.list[i].weather[0]['main'] , data.list[i].main['temp_min'], data.list[i].main['temp_max'],data.list[i].main['humidity'],data.list[i].wind['speed'],data.list[i].main['pressure'],data.list[i].weather[0]['icon']));
     
     }
    
@@ -70,7 +70,7 @@ var getJSON = function(url) {
 });
 
 
-//funcion para buscar el objeto a mostrar por su id
+//funcion que devolvera un objeto que tengo el mismo id que se pasa por parametro
 function encontrarObjeto(id)
 {
   var objeto="";
@@ -85,7 +85,7 @@ function encontrarObjeto(id)
 
   return objeto;
 }
-
+//funcion que devolvera el dia de la semana buscando en un array la posicion pasada por parametro
 function mostrarDiaSemana(diaSemana) {
 
 var array=['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'];
@@ -94,30 +94,6 @@ return  (diaSemana >= 0 && diaSemana <= 6) ? array[diaSemana] : "";
 
 }
 
-// funcion que va a determinar que imagen poner dependiendo del estado del objeto
-function escogerImagen(objeto)
-{
-  var imagen="";
-
-  if(objeto.estado == "Clear")
-  {
-    imagen="sol.png";
-  }
-  else if(objeto.estado == "Rain")
-  {
-    imagen="lluvia.png";
-  }
-  else if(objeto.estado == "Clouds")
-  {
-    imagen="nublado.png";
-  }
-  else
-  {
-    imagen="nevado.png";
-  }
-
-  return imagen;
-}
 // funcion para mostrar el dia en el que hemos pinchado 
 function mostrarDia(id)
 {
@@ -131,17 +107,14 @@ function mostrarDia(id)
   var contenidoDia;
   // buscamos el objeto por su id
   var objeto=encontrarObjeto(id);
-  // llamamos a la funcion que va determinar que imagen va tener el objeto
-  var imagen=escogerImagen(objeto);
   // asignamos un dia de la semana dependiendo de un numero
-  console.log(objeto.fecha.getDay());
   var diaSemana=mostrarDiaSemana(objeto.fecha.getDay());
 
   contenidoDia="<table class=\"tablaInicial\">";
   contenidoDia+="<tr><th><a class=\"encabezado\" href=\"javascript:mostrarOcultar();\" >Forecast</a></th></tr>";
   contenidoDia+="<tr><th class=\"ciudad\" >Alcobendas</th></tr>";
   contenidoDia+="</table>";
-  contenidoDia+="<img src=\"img/"+imagen+"\" />";
+  contenidoDia+="<img src=\"https://openweathermap.org/img/w/"+objeto.icono+".png\" />";
   contenidoDia+="<h2>"+diaSemana+" "+objeto.fecha.getDate()+"/"+(objeto.fecha.getMonth()+1)+"</h2>";
   contenidoDia+="<h4>"+objeto.estado+"</h4>";
   contenidoDia+="<h3 class=\"max\" >"+objeto.max+"º </h3>";
@@ -156,7 +129,7 @@ function mostrarDia(id)
  dia.innerHTML=contenidoDia;
 }
 
-// funcion para mostrar una tabla con los datos de toda semana
+// funcion para mostrar una tabla con los datos de toda semana recorriendo el array de objetos
 function mostrarSemana()
 {
   

@@ -35,35 +35,3 @@ describe("Probando la funcion mostrarDiaSemana ", function () {
     });
 });
 // no consigo hacer casos de prueba con objetos
-describe("Probando la funcion encontrarObjeto ", function () {
-    var tiempo = new Tiempo(0,"Fri Dec 15 2017 19:00:00 GMT+0100 (Hora estándar romance)","Rain",3,5.27);
-     it("Deberia mostrar el objeto que se encuentra en la posicion 0", function () {
-        encontrarObjeto(tiempo.id).id.should.be.equal(0);
-    });
-      it("Deberia mostrar el objeto que se encuentra en la posicion 1", function () {
-        encontrarObjeto(8).should.be.equal(8);
-    });
-       it("Deberia mostrar el objeto que se encuentra en la posicion 2", function () {
-        encontrarObjeto(16).should.be.equal(16);
-    });
-        it("Deberia mostrar el objeto que se encuentra en la posicion 3", function () {
-        encontrarObjeto(24).should.be.equal(24);
-    });
-         it("Deberia mostrar el objeto que se encuentra en la posicion 4", function () {
-        encontrarObjeto(32).should.be.equal(32);
-    });
-          it("comprobando una posicion que no se encuentra en el array", function () {
-        encontrarObjeto(5).should.be.equal("");
-    });
-           it("comprobando una posicion que no se encuentra en el array", function () {
-        encontrarObjeto(6).should.be.equal("");
-    });
-            it("comprobando una posicion que no se encuentra en el array", function () {
-        encontrarObjeto(8).should.be.equal("");
-    });
-            it("comprobando con una variable que no es un numero", function () {
-        encontrarObjeto("hola").should.be.equal("");
-    });
-
-
-});

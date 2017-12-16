@@ -48,13 +48,26 @@ var getJSON = function(url) {
 };
 
 //array global donde guardaremos los objetos
-  var dias=[];
+ 
 
-// funcion para sacar datos desde el json
+// funcion que hara de controlador, llamara a la funcion que creara el array de objetos tiempo y la funcion que pintara dicho array
   getJSON(urlTiempo).then(function(data) {
 
+     var dias=crearArray(data);
+
+     mostrarSemana(dias);
     
-    for(let i=0; i< data.list.length; i=i+8)   {
+   
+}, function(status) {
+  alert('Algo fue mal.');
+});
+
+//funcion que devolvera un array de objetos cojiendo la informacion de json 
+function crearArray(data)
+{
+  var dias=[];
+
+  for(let i=0; i< data.list.length; i=i+8)   {
 
       var date=new Date(data.list[i].dt*1000);
       console.log(i);
@@ -64,11 +77,9 @@ var getJSON = function(url) {
     dias.push(new Tiempo(i,date,data.list[i].weather[0]['main'] , data.list[i].main['temp_min'], data.list[i].main['temp_max'],data.list[i].main['humidity'],data.list[i].wind['speed'],data.list[i].main['pressure']));
          
     }
-   
-}, function(status) {
-  alert('Algo fue mal.');
-});
 
+    return dias;
+}
 
 //funcion para buscar el objeto a mostrar por su id
 function encontrarObjeto(id)
@@ -119,7 +130,7 @@ function escogerImagen(objeto)
   return imagen;
 }
 // funcion para mostrar el dia en el que hemos pinchado 
-function mostrarDia(id)
+function mostrarDia(id,dias)
 {
  
  // cambiamos la clase la tabla donde se encuentran todos los datos de la semana para ocultarla
@@ -157,7 +168,7 @@ function mostrarDia(id)
 }
 
 // funcion para mostrar una tabla con los datos de toda semana
-function mostrarSemana()
+function mostrarSemana(dias)
 {
   
   var tabla=document.getElementById("semana");
@@ -173,7 +184,7 @@ function mostrarSemana()
   for(let i=0;i<dias.length;i++)
   {
       contenido+="<tr>";
-      contenido+="<td><a  id=\""+i+"\" href=\"javascript:mostrarDia("+dias[i].id+");\" >"+dias[i].toString()+"</a></td>";
+      contenido+="<td><a  id=\""+i+"\" href=\"javascript:mostrarDia("+dias[i].id+","+dias+");\" >"+dias[i].toString()+"</a></td>";
       contenido+="</tr>";
   }
   // introducimos los datos en la etiqueta con id semana para imprimirlos
