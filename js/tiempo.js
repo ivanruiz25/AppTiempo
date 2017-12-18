@@ -110,13 +110,12 @@ function mostrarDia(id)
   // asignamos un dia de la semana dependiendo de un numero
   var diaSemana=mostrarDiaSemana(objeto.fecha.getDay());
 
-  contenidoDia="<table class=\"tablaInicial\">";
+  contenidoDia="<table class=\"tablaDia\">";
   contenidoDia+="<tr><th><a class=\"encabezado\" href=\"javascript:mostrarOcultar();\" >Forecast</a></th></tr>";
   contenidoDia+="<tr><th class=\"ciudad\" >Alcobendas</th></tr>";
   contenidoDia+="</table>";
   contenidoDia+="<img src=\"https://openweathermap.org/img/w/"+objeto.icono+".png\" />";
   contenidoDia+="<h2>"+diaSemana+" "+objeto.fecha.getDate()+"/"+(objeto.fecha.getMonth()+1)+"</h2>";
-  contenidoDia+="<h4>"+objeto.estado+"</h4>";
   contenidoDia+="<h3 class=\"max\" >"+objeto.max+"º </h3>";
   contenidoDia+="<h3>"+objeto.min+"º </h3>";
   contenidoDia+="<h4> Humedad: "+objeto.humedad+"% </h4>";

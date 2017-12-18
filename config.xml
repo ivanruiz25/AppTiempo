@@ -1,23 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "com.phonegap.example"
+    versionCode = "10"
+    version     = "1.0.0" >
 
-	<widget xmlns = "http://www.w3.org/ns/widgets"
-		xmlns:gap = "http://phonegap.com/ns/1.0"
-		xmlns:android = "http://schemas.android.com/apk/res/android"
-		id        = "com.phonegap.example"
-		versionCode="10"
-		version   = "1.0.0">
-
-		<!-- Nombre de la app -->
-		<name>Forecast</name>
-		<!-- Descripcion -->
-		<description>App realizada para una practica de Desarrollo en entorno cliente. muesta el tiempo durante una semana en Alcobendas.</description>
-		<!-- Autor de la app -->
-		<author href="" email="ivanruizde25@gmail.com">Ivan Ruiz de la Hermosa Santos</author>
-		<!-- Icono que tendra la app -->
-		<icon src="img/nevado.png" />
+<!-- Nombre de la app -->
+<name>Forecast</name>
+<!-- Descripcion -->
+<description>App realizada para una practica de Desarrollo en entorno cliente. muesta el tiempo durante una semana en Alcobendas.</description>
+<!-- Autor de la app -->
+<author href="https://github.com/ivanruiz25/Drought-in-Spain" email="ivanruizde25@gmail.com">Ivan Ruiz de la Hermosa Santos</author>
+<!-- Icono que tendra la app -->
+<icon src="img/nevado.png" />
 	
-		<!-- plataformas en las que se podra utilizar la app -->
-  		<access origin="*" />
-		<!--    -->
+<!-- plataformas en las que se podra utilizar la app -->
+<gap:plugin name="cordova-plugin-whitelist" source="npm" />
+	
+	<allow-navigation href="http://*/*" />
+	<allow-intent href="https://*/*" />
+
+	<param name="android-package" value="org.apache.cordova.InAppBrowser"/>
+  		
+<!--    -->
 
 		</widget>
